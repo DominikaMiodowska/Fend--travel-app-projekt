@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+        <link rel="shortcut icon" href="">
+    </head>
+
+    <body>
+            <header>
+                <div class="header-title">
+                <h1>Travel Planner</h1>
+                </div>
+                <div class="">
+                    
+                </div>
+            </header>
+       
+            <div id = "app">
+                <div class="img-trip">
+                    <img src="" alt="trip photo">
+                </div>
+                 <div class ="holder city">
+                  <label for="zip">Enter City here</label>
+                  <input type="text" name="zip" id="zip" placeholder="London">
+                  <button id="generate" class="btn btn-search" name="submit" type="submit">search </button>
+                
+                </div> 
+                <div class ="trips">
+                    <h3 class="trips-location">My trip to: Paris, France</h3>
+                    <h3 class="trips-time">Departing: 2/12/2020</h3>
+                  <!-- <label for="feelings">How are you feeling today?</label> -->
+                  <!-- <textarea class= "myInput" name="feeling" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea> -->
+                  <button id="save generate" class="btn btn-save" name="submit" type="submit"> save trip </button>
+                  <button id="remove" class="btn btn-remove" name="submit" type="submit"> remove trip </button>
+                  <div class ="holder entry">
+                      <h3 class="summary">Paris, France is 220 days away</h3>
+                      <div id = "date"></div> 
+                      <br>
+                      <h3 class = "title">Typical weather for then is:</h3>
+                      <div id = "entryHolder">
+                          <div id = "temp-max" class="entryHolder">temp-min</div>
+                          <div id = "temp-min" class="entryHolder">temp-min</div>
+                          <div id = "description" class="entryHolder">description</div>
+
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
+    </body>
+</html>
