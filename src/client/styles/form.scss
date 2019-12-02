@@ -57,8 +57,6 @@
     
     a{
 
-    
-
         &, &:link{
 
             color: #000000;
@@ -76,7 +74,8 @@
 }
 
 .notes{
-    // display: none;          ******************************************* uncomment
+    //                ******************************************* uncomment
+    display: none;    
     position: relative;
     #text-notes{
         margin: 15px 0;
@@ -86,11 +85,9 @@
         top: -45px;
         left: 330px;
     }
-
-    
 }
 .last-note{
-    
+   color: #04046a; 
 }
 
 .text-show{

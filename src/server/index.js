@@ -1,3 +1,6 @@
+// Setup empty JS object to act as endpoint for all routes
+const projectData = [];
+
 var path = require('path');
 const express = require('express');
 const request = require('request');
@@ -24,6 +27,7 @@ app.get('/', function (req, res) {
 })
 
 
+
 app.get('/all', getData)
 function getData(req, res){
     res.send(projectData)
@@ -35,13 +39,14 @@ app.post("/", function(req, res){
 })
 
 app.post('/add', function(req, res){   
-    // console.log(req.body)
+     console.log(req)
     
     newEntry={
         // date: req.body.date,
         zip: req.body.zip,
-        temp: req.body.temp,
-        feeling: req.body.feeling
+        lng: req.body.lng,
+        lat: req.body.lat,
+        note: req.body.note
     }
     projectData.push(newEntry)
     res.send(projectData)
