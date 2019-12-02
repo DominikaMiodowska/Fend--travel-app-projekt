@@ -14,12 +14,12 @@ const getLocation = async(baseURL, zip) =>{
   const res = await fetch(baseURL + zip);
   const data = await res.json();
 
-  console.log('test', data.weatherObservations.temperature);
+  console.log('test', data.weatherObservation.lng, data.weatherObservation.lat, zip);
 
   console.log('test', data, res);
 
   //Add data to post request  date: data.date,
-  postData('/add', { temp:data.weatherObservations.temperature, zip:zip})
+  postData('/add', { lng:data.weatherObservations.lng, lat:data.weatherObservations.lat, zip:zip})
 
   // show in UI
   updateUI()
@@ -64,9 +64,9 @@ const updateUI = async () => {
   try{
     const allData = await request.json()
     
-    const content = document.getElementById('date').innerHTML = `<h2>${newDate}</h2>`;
-    document.getElementById('temp-max').innerHTML = allData[0].temp;
-    document.getElementById('temp-min').innerHTML = allData[0].temp;
+    document.getElementById('country').innerHTML = allData[0].zip;
+    document.getElementById('high').innerHTML = allData[0].lang;
+    document.getElementById('low').innerHTML = allData[0].lat;
     // document.getElementById('description').innerHTML = allData[0].feeling;
   
   }catch(error){

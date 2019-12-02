@@ -1,6 +1,7 @@
 #app{
     background-color: #f0cbee;
     padding: 50px 10px;
+    margin: 100px;
 
     .city{
         font-size: 16px;
@@ -19,6 +20,7 @@
                 outline: none;
             }
         }
+
     }
 
 
@@ -50,4 +52,47 @@
 }
 
 
+.add-notes{
+    margin: 50px 0;
+    
+    a{
 
+    
+
+        &, &:link{
+
+            color: #000000;
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 5px 8px;
+            text-decoration: none;
+            transition: all .2s;
+        }
+        &:hover{
+            box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.4);
+            
+        }
+    }
+}
+
+.notes{
+    // display: none;          ******************************************* uncomment
+    position: relative;
+    #text-notes{
+        margin: 15px 0;
+    }
+    .btn-sub{
+        position: absolute;
+        top: -45px;
+        left: 330px;
+    }
+
+    
+}
+.last-note{
+    
+}
+
+.text-show{
+    display: block;
+}
