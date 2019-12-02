@@ -6,7 +6,10 @@ import './styles/form.scss'
 import './styles/base.scss'
 import './styles/footer.scss'
 
-// alert("I EXIST")
+import img from './media/blueLake.jpg';
+
+var image = document.getElementById('img-trip');
+image.src = img;
 
 // export{
 //     validURL,
