@@ -1,26 +1,25 @@
 /* Global Variables */
 // Personal API Key for OpenWeatherMap API
-const apiKey = 'appid=7d9ab1f237d14cf0daf5898c7036e76f';
-const baseURL = `https://api.openweathermap.org/data/2.5/weather?${apiKey}&zip=`;
+const apiKey = 'username=dominika_ongoing&';
+const baseURL = `http://api.geonames.org/weatherIcaoJSON?${apiKey}&zip=`;
 
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(e) {
   const zip = document.getElementById('zip').value;
-  const feeling = document.getElementById('feelings').value;
-  getLocation(baseURL, zip, feeling);
+  getLocation(baseURL, zip);
 };
 
-const getLocation = async(baseURL, zip, feeling) =>{
+const getLocation = async(baseURL, zip) =>{
   const res = await fetch(baseURL + zip);
   const data = await res.json();
 
-  console.log('test', data.main.temp, feeling);
+  console.log('test', data.weatherObservations.temperature);
 
   console.log('test', data, res);
 
   //Add data to post request  date: data.date,
-  postData('/add', { temp:data.main.temp, zip:zip, feeling:feeling})
+  postData('/add', { temp:data.weatherObservations.temperature, zip:zip})
 
   // show in UI
   updateUI()
@@ -47,9 +46,17 @@ const postData = async ( url = '', data = {})=>{
   }
 
 // Create a new date instance dynamically with JS
+
+let t = new Date();
+let newDateTrip = (t.getDate()+10) + '.' + (t.getMonth()+4)+'.'+ t.getFullYear();
+console.log(`Departing : ${newDateTrip}`);
+const departing = document.getElementById('trips-time').innerHTML = `<h3>Departing: ${newDateTrip}</h3>`;
+
 let d = new Date();
 let newDate = d.getDate()+'.'+ (d.getMonth()+1)+'.'+ d.getFullYear();
-console.log(`Today is : ${newDate}`);
+console.log(`Today is ${newDate}`);
+const today = document.getElementById('date').innerHTML = `<h3>Today is: ${newDate}</h3>`;
+
 
 // UI UPDATE
 const updateUI = async () => {
@@ -58,10 +65,16 @@ const updateUI = async () => {
     const allData = await request.json()
     
     const content = document.getElementById('date').innerHTML = `<h2>${newDate}</h2>`;
-    document.getElementById('temp').innerHTML = allData[0].temp;
-    document.getElementById('content').innerHTML = allData[0].feeling;
+    document.getElementById('temp-max').innerHTML = allData[0].temp;
+    document.getElementById('temp-min').innerHTML = allData[0].temp;
+    // document.getElementById('description').innerHTML = allData[0].feeling;
   
   }catch(error){
     console.log("error", error);
   }
 }
+
+
+
+
+export{performAction, getLocation, postData, updateUI}
