@@ -9,7 +9,7 @@ import './styles/form.scss'
 import './styles/base.scss'
 import './styles/footer.scss'
 
-import img from './media/paris.jpg';
+import img from './media/dreamTravel.jpg';
 
 var image = document.getElementById('img-trip');
 image.src = img;

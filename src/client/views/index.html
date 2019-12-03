@@ -20,13 +20,13 @@
                 </div>
                  <div class ="holder city">
                   <label for="zip">Enter City here</label>
-                  <input class="input-city" type="text" name="zip" id="zip" placeholder="London">
+                  <input class="input-city" type="text" name="zip" id="zip" placeholder="London,uk">
                   <button id="generate" class="btn btn-search" name="submit" type="submit">search </button>
                 
                 </div> 
                 <div class ="trips">
                     <br>
-                    <h3 class="trips-location">My trip to: Paris, France</h3>
+                    <h3 class="trips-location">My trip to: <span id="country">-</span>, <span id="countryCode"></span></h3>
                     <div id="trips-time" class="trips-time"></div>
                     <div id = "date"></div> 
                     <!-- <label for="feelings">How are you feeling today?</label> -->
@@ -36,11 +36,11 @@
                     <div class ="holder entry">
                         
                         <br>
+                        <div class="header_3"><span id="country">Trip</span> wait for you!</div>
                         <h3 class = "title">Typical weather for then is:</h3>
                         <div id = "entryHolder">
-                            <h3 id="country">Paris wait for you!</h3>
-                            <div id = "high" class="entryHolder">high: -46</div>
-                            <div id = "low" class="entryHolder">low: -35</div>
+                            <div class="entryHolder">High: <span id = "high"> -</span></div>
+                            <div  class="entryHolder">Low: <span id = "low"> - </span></div>
                             <div id = "description" class="entryHolder"></div>
 
                       </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="notes">
                     <p>Write your note:</p>
-                    <textarea name="notes" id="text-notes" cols="60" rows="15"></textarea>
+                    <textarea name="notes" type="text" id="text-notes" cols="60" rows="10"></textarea>
                     <button id="text-submit-btn" class="btn btn-save btn-sub" type="submit">Add</button>   
                 </div>
                 <div id="last-note" class="last-note"></div> 

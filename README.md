@@ -14,6 +14,8 @@
       - `index.js`
       - views folder
         - `index.html`
+      - media folder
+        - `paris.png`
       - js folder
         - `app.js`
       - styles folder
