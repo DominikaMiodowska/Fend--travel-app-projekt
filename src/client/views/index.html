@@ -18,7 +18,7 @@
                 
                  <div class ="holder city">
                   <label for="zip">Enter City here</label>
-                  <input class="input-city" type="text" name="zip" id="zip" placeholder="London,uk">
+                  <input class="input-city" type="text" value="London,UK" name="zip" id="zip" placeholder="London,uk">
                   <button id="generate" class="btn btn-search" name="submit" type="submit">search </button>
                 
                 </div> 
@@ -27,21 +27,22 @@
                 </div>
                 <div class ="trips">
                     <br>
-                    <h3 class="trips-location">My trip to: <span id="country">-</span>, <span id="countryCode"></span></h3>
+                    <h3 class="trips-location">My trip to: <span class="country">France</span>, <span id="countryCode"></span></h3>
                     <div id="trips-time" class="trips-time"></div>
                     <div id = "date"></div> 
-                    <!-- <label for="feelings">How are you feeling today?</label> -->
-                    <!-- <textarea class= "myInput" name="feeling" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea> -->
+                    <div class="header_3"><span class="country">France</span> is in <span id="days">-</span> days away!</div>
+        
                     <button id="save generate" class="btn btn-save" name="submit" type="submit"> save trip </button>
                     <button id="remove" class="btn btn-remove" name="submit" type="submit"> remove trip </button>
                     <div class ="holder entry">
                         
                         <br>
-                        <div class="header_3"><span id="country">Trip</span> wait for you!</div>
+                        
                         <h3 class = "title">Typical weather for then is:</h3>
                         <div id = "entryHolder">
                             <div class="entryHolder">High: <span id = "high"> -</span></div>
                             <div  class="entryHolder">Low: <span id = "low"> - </span></div>
+                            <div  id="weather"></div>
                             <div id = "description" class="entryHolder"></div>
 
                       </div>
@@ -52,7 +53,7 @@
                 </div>
                 <div class="notes">
                     <p>Write your note:</p>
-                    <textarea name="notes" type="text" id="text-notes" cols="60" rows="10"></textarea>
+                    <textarea name="notes" type="text" id="text-notes" maxlength="500" cols="60" rows="9"></textarea>
                     <button id="text-submit-btn" class="btn btn-save btn-sub" type="submit">Add</button>   
                 </div>
                 <div id="last-note" class="last-note"></div> 
