@@ -17,10 +17,11 @@ document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
   const country = document.getElementById('zip').value;
   getLocation(baseURL, country);
-  getImage(pixabayBaseURL, country)
+  getImage(pixabayBaseURL, country);
+  // getWeather(darkBaseURL)
 };
 
-// ############     LOCATION    ################################
+// ########################      LOCATION    ################################
 const getLocation = async(baseURL, location) =>{
   const city = location.split(',')[0];
   const country = location.split(',')[1];
@@ -32,7 +33,7 @@ const getLocation = async(baseURL, location) =>{
   updateUI(data.geonames);
 }
 
-// ############     IMAGE    ################################
+// ########################      IMAGE    ################################
 const getImage = async(pixabayBaseURL, location) =>{
   
   const city = location.split(',')[0];
@@ -42,6 +43,15 @@ const getImage = async(pixabayBaseURL, location) =>{
   var image = document.getElementById('img-trip');
  image.src = data.hits[0].largeImageURL;
 }
+// ########################     WEATHER  ################################
+// const getWeather = async(darkBaseURL, location) =>{
+  
+//   const res = await fetch(darkBaseURL +  city );
+//   const data = await res.json();
+
+
+//   // console.log('test', data);
+// }
 
 // UI UPDATE
 const updateUI = async (newData) => {
@@ -71,7 +81,7 @@ const updateUI = async (newData) => {
   document.getElementById('date').innerHTML = `<h3>Today is: ${newDateX.getDate()+'.'+(newDateX.getMonth()+1)+'.'+ newDateX.getFullYear()}</h3>`;
   document.getElementById('trips-time').innerHTML = `<h3>Departing: ${ newDateTripX.getDate()+'.'+newDateTripX.getMonth()+'.'+ newDateTripX.getFullYear()}</h3>`;  
   document.getElementById('days').innerHTML = `${difference_in_days}`
-  
+
   document.getElementsByClassName('country')[0].innerHTML = newData[0].name;
   document.getElementsByClassName('country')[1].innerHTML = newData[0].name;
   document.getElementById('countryCode').innerHTML = newData[0].countryName;
@@ -84,24 +94,22 @@ const updateUI = async (newData) => {
 }
 
 // ###################       Add Note      ##################################
-
+function toggleNotes() {
+  let notes = document.querySelector('.notes');
+    notes.classList.toggle('text-show');
+}
 // toggle (add) note button
 let addbtn = document.getElementById('btn-note');
 addbtn.addEventListener('click', function(){
-    let notes = document.querySelector('.notes');
-    notes.classList.toggle('text-show');
+  toggleNotes()
 });
-
 
 //  SAVE 
 let note_btn = document.getElementById('text-submit-btn');
-
 note_btn.addEventListener('click', function(){
   const note = document.getElementById('text-notes').value;
   document.getElementById('last-note').innerText =  note;
-  console.log('Note:'+ note);
-  
-  
+  toggleNotes()
 });
 
 
