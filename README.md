@@ -15,7 +15,7 @@
       - views folder
         - `index.html`
       - media folder
-        - `paris.png`
+        - `dreamTravel.jpg`
       - js folder
         - `app.js`
       - styles folder
