@@ -6,7 +6,7 @@ const pixabayBaseURL = `https://pixabay.com/api/${pixabayApiKey}&q=`
 
 //Personal API Key for Dark Blue  (weather)
 const darkApiKey = 'ae6ef7c8ff0231dd4f01ee4108e6413b'
-const darkBaseURL = `https://api.darksky.net/forecast/${darkApiKey}/`
+const darkBaseURL = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkApiKey}/`
 
 // Personal API Key for GEONAMES API  (location, lat, low)
 const apiKey = 'username=dominika_ongoing';
@@ -18,7 +18,7 @@ function performAction(e) {
   const country = document.getElementById('zip').value;
   getLocation(baseURL, country);
   getImage(pixabayBaseURL, country);
-  // getWeather(darkBaseURL)
+ 
 };
 
 // ########################      LOCATION    ################################
@@ -28,9 +28,9 @@ const getLocation = async(baseURL, location) =>{
   const res = await fetch(baseURL + 'country=' + country + '&q' + city + '&maxRows=1');
   const data = await res.json();
   // console.log('test', data, res);
-
-  // show in UI
   updateUI(data.geonames);
+  getWeather(darkBaseURL)
+  // show in UI
 }
 
 // ########################      IMAGE    ################################
@@ -44,14 +44,18 @@ const getImage = async(pixabayBaseURL, location) =>{
  image.src = data.hits[0].largeImageURL;
 }
 // ########################     WEATHER  ################################
-// const getWeather = async(darkBaseURL, location) =>{
+
+const getWeather = async(darkBaseURL, latitude, longitude) =>{
+
   
-//   const res = await fetch(darkBaseURL +  city );
-//   const data = await res.json();
+  latitude = document.getElementById('high').innerText;
+  longitude = document.getElementById('low').innerText;
+  
+  const res = await fetch(darkBaseURL +  latitude + ',' + longitude );
+  const data = await res.json();
+  document.getElementById('weather').innerHTML = data.daily.summary;
 
-
-//   // console.log('test', data);
-// }
+}
 
 // UI UPDATE
 const updateUI = async (newData) => {
@@ -85,9 +89,13 @@ const updateUI = async (newData) => {
   document.getElementsByClassName('country')[0].innerHTML = newData[0].name;
   document.getElementsByClassName('country')[1].innerHTML = newData[0].name;
   document.getElementById('countryCode').innerHTML = newData[0].countryName;
-  document.getElementById('low').innerHTML = newData[0].lng;
   document.getElementById('high').innerHTML = newData[0].lat;
+  document.getElementById('low').innerHTML = newData[0].lng;
   
+
+console.log( newData);
+
+
   }catch(error){
     console.log("error", error);
   }
