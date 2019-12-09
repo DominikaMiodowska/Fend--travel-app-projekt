@@ -62,28 +62,23 @@ const updateUI = async (newData) => {
 
   try{
 
-  //#########################    Days between two dates    ############################################
-  
-  // Create a new date instance dynamically with JS
-  var x = Math.floor((Math.random() * 25) + 1);   //day
-  var y = Math.floor((Math.random() * 9) +1);   //month
-  var s = Math.floor((Math.random() * 5)+1);   //year
-
-  // DEPARTING TIME 
-  let t = new Date();
-  let newDateTrip = new Date( (t.getMonth()-y)+'/'+ (t.getDate()+ x) + '/' +(t.getFullYear()+s))
-    
-  // Today Date
+  // Create a new date instance dynamically with JS 
+  function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  }
   let d = new Date();
+  const departing = randomDate(new Date(2024, 2, 1), new Date((d.getMonth()+1)+'/'+ d.getDate()+'/'+ d.getFullYear()))
+  
+  // Today Date
   let newDate = new Date((d.getMonth()+1)+'/'+ d.getDate()+'/'+ d.getFullYear());
 
   //Calculate the difference in Time and in Days
-  let differencie_in_time = (newDateTrip.getTime())-(newDate.getTime());
+  let differencie_in_time = (departing.getTime())-(newDate.getTime());
   let difference_in_days = Math.floor(differencie_in_time/(1000*3600*24));
   
   //#########################   update the UI    ############################################
   document.getElementById('date').innerHTML = `<h3>Today is: ${newDate.getDate()+'.'+(newDate.getMonth()+1)+'.'+ newDate.getFullYear()}</h3>`;
-  document.getElementById('trips-time').innerHTML = `<h3>Departing: ${ newDateTrip.getDate()+'.'+newDateTrip.getMonth()+'.'+ newDateTrip.getFullYear()}</h3>`;  
+  document.getElementById('trips-time').innerHTML = `<h3>Departing: ${ departing.getDate()+'.'+(departing.getMonth()+1)+'.'+ departing.getFullYear()}</h3>`;  
   document.getElementById('days').innerHTML = `${difference_in_days}`
 
   document.getElementsByClassName('country')[0].innerHTML = newData[0].name;
@@ -92,9 +87,6 @@ const updateUI = async (newData) => {
   document.getElementById('high').innerHTML = newData[0].lat;
   document.getElementById('low').innerHTML = newData[0].lng;
   
-
-console.log( newData);
-
 
   }catch(error){
     console.log("error", error);
