@@ -24,3 +24,15 @@
         - `form.scss`
         - `header.scss`
         - `resets.scss`
+
+# Install
+  - download zip folder 
+  - terminal : npm i
+  - terminal : npm run start
+
+# Build with
+- HTML
+- SCSS
+- Javascript
+- webpack
+- babel

@@ -11,7 +11,7 @@ import './styles/footer.scss'
 
 import img from './media/dreamTravel.jpg';
 
-var image = document.getElementById('img-trip');
+const image = document.getElementById('img-trip');
 image.src = img;
 
 
