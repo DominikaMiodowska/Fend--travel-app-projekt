@@ -1,6 +1,6 @@
-import { getImage } from './app.js';
+import { performAction } from './app';
 
 test('It should be a function', () => {
-  expect(typeof getImage).toBe("function");
+  expect(typeof performAction).toBe("function");
 });
 
