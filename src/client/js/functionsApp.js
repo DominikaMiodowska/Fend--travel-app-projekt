@@ -7,27 +7,35 @@ const darkApiKey = 'ae6ef7c8ff0231dd4f01ee4108e6413b'
 const darkBaseURL = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkApiKey}/`
 
 
-
 // ########################      LOCATION    ################################
 const getLocation = async(baseURL, location) =>{
-    const city = location.split(',')[0];
-    const country = location.split(',')[1];
-    const res = await fetch(baseURL + 'country=' + country + '&q' + city + '&maxRows=1');
-    const data = await res.json();
-    
-    
-    //console.log('test', data, res);
-    await postData('/add', { 
-      lat:data.geonames[0].lat,
-      lng:data.geonames[0].lng, 
-      countryName:data.geonames[0].countryName, 
-      city_country:data.geonames[0].name  
-    } )
-    // console.log('test postdata:', postData)
-    // show in UI
-    updateUI();
-    getWeather(darkBaseURL)
-  
+    const city = location.split(',')[0].trim();
+    const country = location.split(',')[1].trim();
+
+    if(country.length > 2){
+      // alert('test');
+      document.getElementById('zip').style.border='1px solid red';
+      document.getElementById('zip_error').style.display = 'block';
+
+    }else {
+      const res = await fetch(baseURL + 'country=' + country + '&q=' + city + '&maxRows=1');
+      const data = await res.json();
+
+      document.getElementById('zip_error').style.display = 'none';
+      document.getElementById('zip').style.border='none';
+
+      //console.log('test', data, res);
+      await postData('/add', { 
+        lat:data.geonames[0].lat,
+        lng:data.geonames[0].lng, 
+        countryName:data.geonames[0].countryName, 
+        city_country:data.geonames[0].name  
+      } )
+      // console.log('test postdata:', postData)
+      // show in UI
+      updateUI();
+      getWeather(darkBaseURL)
+    }    
   }
   
   // ########################      IMAGE    ################################

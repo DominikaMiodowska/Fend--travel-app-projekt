@@ -6,6 +6,10 @@
     max-width: 1200px;
     border-radius: 15px;
     
+    #zip_error{
+        display: none;
+        color: red;
+    }
 
     .city{
         font-size: 16px;
