@@ -18,6 +18,9 @@
         - `dreamTravel.jpg`
       - js folder
         - `app.js`
+        - `functionsApp.js`
+        - `performAction.js`
+        - `performAction.test.js`
       - styles folder
         - `base.scss`
         - `footer.scss`
@@ -27,8 +30,10 @@
 
 # Install
   - download zip folder 
-  - terminal : npm i
-  - terminal : npm run start
+  - to install:
+      - terminal : npm i
+  - to run :
+      - terminal : npm run start
 
 # Build with
 - HTML

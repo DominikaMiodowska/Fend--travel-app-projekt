@@ -10,6 +10,12 @@
     "build-prod": "webpack --config webpack.prod.js",
     "build": "webpack"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "author": "Dominika Miodowska",
   "license": "ISC",
   "dependencies": {
