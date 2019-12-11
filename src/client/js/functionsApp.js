@@ -25,22 +25,21 @@ const getLocation = async(baseURL, location) =>{
       document.getElementById('zip').style.border='none';
 
       //console.log('test', data, res);
-      await postData('/add', { 
+      await postData('/addGeoData', { 
         lat:data.geonames[0].lat,
         lng:data.geonames[0].lng, 
         countryName:data.geonames[0].countryName, 
         city_country:data.geonames[0].name  
       } )
-      // console.log('test postdata:', postData)
       // show in UI
-      updateUI();
-      getWeather(darkBaseURL)
+      
+      await getWeather(darkBaseURL)
+      await updateUI();
     }    
   }
   
   // ########################      IMAGE    ################################
   const getImage = async(pixabayBaseURL, location) =>{
-    
     const city = location.split(',')[0];
     const res = await fetch(pixabayBaseURL +  city );
     const data = await res.json();
@@ -50,18 +49,19 @@ const getLocation = async(baseURL, location) =>{
   }
 
   // ########################      Weather    ################################
-
   const getWeather = async(darkBaseURL, latitude, longitude) =>{
 
-    const request = await fetch('/all' );
+    const request = await fetch('/allGeoData' );
     const newData = await request.json();
-  
     // latitude = document.getElementById('high').innerText;
     // longitude = document.getElementById('low').innerText;
     
     const res = await fetch(darkBaseURL +  newData[newData.length - 1].lat + ',' + newData[newData.length - 1].lng );
     const data = await res.json();
-    document.getElementById('weather').innerHTML = data.daily.summary;
+
+    await postWeather('/addWeatherData', {
+      weather : data.daily.summary
+    });
   
   }
 
@@ -73,26 +73,54 @@ const getLocation = async(baseURL, location) =>{
       method: 'POST', 
       credentials: 'same-origin',
       headers: {
-          'Content-Type': 'application/json',
+         'Content-Type': 'application/json',
       },     
       body: JSON.stringify(data), 
     });
   
       try {
         const newData = await response.json();
-        console.log(newData);
+        // console.log(newData);
         return newData;
       }catch(error) {
       console.log("error post Data", error);
       }
   }
+  // ########################      postWeather    ################################
+
+  const postWeather = async ( url = '', data = {})=>{
+        
+    console.log('postWeather :',data);      
+        
+      const response = await fetch(url, {
+      method: 'POST', 
+      credentials: 'same-origin',
+      headers: {
+          'Content-Type': 'application/json',
+      },     
+      body: JSON.stringify(data), 
+    });
+  
+      try {
+        const weathData = await response.json();
+        // console.log(weathData);
+        return weathData;
+      }catch(error) {
+      console.log("error Weather Data", error);
+      }
+  }
   // UI UPDATE
 const updateUI = async () => {
-    const request = await fetch('/all');
+    let request = await fetch('/allGeoData');
     const newData = await request.json();
+
+    request = await fetch('/WeatherData');
+    const weathData = await request.json();
   
-    console.log("New Data");
-    console.log(newData);
+    // console.log("New Data");
+    // console.log(newData);
+    // console.log("Weather Data");
+    // console.log(weathData);
     try{
   
     // Create a new date instance dynamically with JS 
@@ -120,6 +148,8 @@ const updateUI = async () => {
     document.getElementById('countryCode').innerHTML = newData[newData.length - 1].countryName;
     document.getElementById('high').innerHTML = newData[newData.length - 1].lat;
     document.getElementById('low').innerHTML = newData[newData.length - 1].lng;
+
+    document.getElementById('weather').innerHTML = weathData[weathData.length -1].weather;
     
   
     }catch(error){

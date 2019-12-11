@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Setup empty JS object to act as endpoint for all routes
-const projectData = [];
+const geoData = [];
+const weatherData = [];
 
 
 app.get('/', function (req, res) {
@@ -23,26 +24,38 @@ app.get('/', function (req, res) {
     
 })
 
-app.get('/all', getData)
+app.get('/allGeoData', getData)
 function getData(req, res){
-    res.send(projectData)
+    res.send(geoData)
 }
+app.get('/WeatherData', getWeatherData)
+function getWeatherData(req, res){
+    res.send(weatherData)
+}
+
 
 //POST route
 app.post("/", function(req, res){
     request(baseURL)
 })
-
-app.post('/add', function(req, res){       
+app.post('/addGeoData', function(req, res){       
     newEntry={
         lat: req.body.lat,
         lng: req.body.lng,
         countryName: req.body.countryName,
         city_country: req.body.city_country
     }
-    projectData.push(newEntry)
-    res.send(projectData)
-    console.log(projectData);
+    geoData.push(newEntry)
+    res.send(geoData)
+    console.log(geoData);
+});
+app.post('/addWeatherData', function(req, res){       
+    weatherEntry={
+        weather :req.body.weather
+    }
+    weatherData.push(weatherEntry)
+    res.send(weatherData)
+    console.log(weatherData);
 });
 
 
