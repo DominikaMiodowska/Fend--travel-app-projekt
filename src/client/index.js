@@ -1,5 +1,6 @@
-import { performAction} from './js/app'
-import { getLocation} from './js/app'
+import { performAction} from './js/performAction'
+import { getLocation} from './js/functionsApp'
+import { getImage} from './js/functionsApp'
 import { postData} from './js/app'
 import { updateUI} from './js/app'
 

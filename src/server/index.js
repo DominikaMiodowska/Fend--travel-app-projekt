@@ -4,9 +4,6 @@ const request = require('request');
 const bodyParser = require('body-parser');
 const  cors = require('cors')
 
-// const apiKey = 'username=dominika_ongoing';
-// const baseURL = `http://api.geonames.org/searchJSON?${apiKey}&`;
-
 const app = express()
 app.use(cors())
 app.use(express.static('dist'))
@@ -15,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Setup empty JS object to act as endpoint for all routes
-projectData = [];
+const projectData = [];
 
 
 app.get('/', function (req, res) {
