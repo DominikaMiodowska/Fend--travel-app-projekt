@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const  cors = require('cors')
 
 const app = express()
+
+
+
 app.use(cors())
 app.use(express.static('dist'))
 
@@ -16,7 +19,8 @@ const projectData = [];
 
 
 app.get('/', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+    res.status(200).sendFile(path.resolve(__dirname, 'dist/index.html'))
+    
 })
 
 app.get('/all', getData)
@@ -31,7 +35,6 @@ app.post("/", function(req, res){
 
 app.post('/add', function(req, res){       
     newEntry={
-        // date: req.body.date,
         lat: req.body.lat,
         lng: req.body.lng,
         countryName: req.body.countryName,
@@ -39,12 +42,16 @@ app.post('/add', function(req, res){
     }
     projectData.push(newEntry)
     res.send(projectData)
-    // console.log(projectData);
+    console.log(projectData);
 });
 
 
 
 // designates what port the app will listen to for incoming requests
 app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+    // console.log('Example app listening on port 8080!')
 })
+
+
+
+module.exports.app = app;

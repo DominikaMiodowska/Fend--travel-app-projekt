@@ -17,5 +17,3 @@ import img from './media/dreamTravel.jpg';
 const image = document.getElementById('img-trip');
 image.src = img;
 
-
-
